@@ -48,9 +48,9 @@ class TicketReservationController extends Controller
     			$allBookedSeat =  $currentBookingSeat;
     		}
     		
-    // 		Train::where('s_station','=',$req->s_station)
-				// ->where('d_station','=',$req->d_station)
-		  //     	->update(['num_of_seats' => $availableTrainSeat[0]->num_of_seats - $req->no_seat,'seat_left'=>$seatsLeft,'booked_seat'=>$allBookedSeat]);
+     		Train::where('s_station','=',$req->s_station)
+				 ->where('d_station','=',$req->d_station)
+		         ->update(['num_of_seats' => $availableTrainSeat[0]->num_of_seats - $req->no_seat,'seat_left'=>$seatsLeft,'booked_seat'=>$allBookedSeat]);
 		}else{
 
 			$nonConsectiveAvailableSeat = array_values(json_decode($availableTrainSeat[0]->seat_left,true));
@@ -69,9 +69,9 @@ class TicketReservationController extends Controller
     			$allBookedSeat = array_merge(json_decode($availableTrainSeat[0]->booked_seat),$currentBookingSeat);
     		}
     		
-			// Train::where('s_station','=',$req->s_station)
-			// 	->where('d_station','=',$req->d_station)
-		 //      	->update(['num_of_seats' => $availableTrainSeat[0]->num_of_seats - $req->no_seat,'seat_left'=>$seatsLeft,'booked_seat'=>$allBookedSeat]);
+			 Train::where('s_station','=',$req->s_station)
+			      ->where('d_station','=',$req->d_station)
+		          ->update(['num_of_seats' => $availableTrainSeat[0]->num_of_seats - $req->no_seat,'seat_left'=>$seatsLeft,'booked_seat'=>$allBookedSeat]);
 		}
 
 		$this->insertBookingDetails($availableTrainSeat,$req,$currentBookingSeat);
