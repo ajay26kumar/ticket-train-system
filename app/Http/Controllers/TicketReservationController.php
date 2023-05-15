@@ -37,7 +37,7 @@ class TicketReservationController extends Controller
     	$availableTrainSeat = $this->getTrainAndSeatAvailability($req);
 
     	$consectiveAvailableSeat =  $this->find_consecutive_seats(json_decode($availableTrainSeat[0]->seat_left,true),$req->no_seat);
-    	
+    	$alreadyBookedSeats = [];
     	if(!empty($consectiveAvailableSeat)){
     		$alreadyBookedSeats = json_decode($availableTrainSeat[0]->booked_seat,true);
     		$seatsLeft = $this->calculateLeftSeats($availableTrainSeat[0]->seat_left,$consectiveAvailableSeat);

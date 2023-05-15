@@ -26,7 +26,7 @@
     @endif
     @if(in_array($i,$currentBookingSeat))
     	<td width='15%' align='center'  bgcolor='green'>{{ $i }}</td>
-	@elseif(in_array($i,$alreadyBookedSeats))
+	@elseif(isset($alreadyBookedSeats) && in_array($i,$alreadyBookedSeats))
 		<td width='15%' align='center'  bgcolor='grey'>{{ $i }}</td>
 	@else
     	<td width='15%' align='center'  bgcolor='red'>{{ $i }}</td>
