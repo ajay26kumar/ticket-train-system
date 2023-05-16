@@ -189,6 +189,10 @@ if ($("#searchTrainForm").length > 0) {
                 success: function(response) {
                     $('#submit').html('Submit');
                     $("#submit").attr("disabled", false);
+                    if(response.status == false){
+                      alert(response.message);
+                      return false;
+                    }
                     alert(response.Available_Seat+ " " +response.message);
                     
                     $('.passengerdetail').append("<h2>Enter Passenger Details</h2>")

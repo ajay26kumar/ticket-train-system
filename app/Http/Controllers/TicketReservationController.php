@@ -23,12 +23,12 @@ class TicketReservationController extends Controller
     	
     	if($searchroute->isNotEmpty()) {
 	    	if ($searchroute[0]->num_of_seats == 0) {
-	    	 	return response()->json(['message'=>'NO Seats Available']);
+	    	 	return response()->json(['status'=>false,'message'=>'NO Seats Available']);
 	    	}
 	    
-	    	return response()->json(['message'=>'Seats Available','Available_Seat'=>$searchroute[0]->num_of_seats,'no_seat'=>$req->no_seat,'s_station'=>$req->s_station,'d_station'=>$req->d_station]);	    	
+	    	return response()->json(['status'=>true,'message'=>'Seats Available','Available_Seat'=>$searchroute[0]->num_of_seats,'no_seat'=>$req->no_seat,'s_station'=>$req->s_station,'d_station'=>$req->d_station]);	    	
     	}else {
-	    	return response()->json(['message'=>'Train Route Not Found']);
+	    	return response()->json(['status'=>false,'message'=>'Train Route Not Found']);
 	    }
     }
 
@@ -101,7 +101,6 @@ class TicketReservationController extends Controller
 	{
 		return Train::where('s_station','=',$req->s_station)
 					->where('d_station','=',$req->d_station)
-					->Orwhere('num_of_seats','>',$req->no_seat)
 					->get();
 	}
 
